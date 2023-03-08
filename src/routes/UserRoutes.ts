@@ -1,9 +1,9 @@
-import { UserController } from './../src/controller/UserController';
+import { UserController } from '../controller/UserController';
 import { Router } from "express";
 
 const router = Router();
 
-const userController = new UserController 
+const userController = new UserController
 
 router.get("/user", userController.getAllUsers)
 
