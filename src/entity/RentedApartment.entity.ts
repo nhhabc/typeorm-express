@@ -15,10 +15,14 @@ export class RentedApartment {
   })
     description: string
 
-  @Column()
+  @Column({
+    nullable: true
+  })
     preview: string
 
-  @Column()
+  @Column({
+    nullable: true
+  })
     address: string
 
   @Column({
@@ -26,25 +30,39 @@ export class RentedApartment {
   })
     price: string
     
-  @Column()
+  @Column({
+    nullable: true
+  })
     area: string
 
-  @Column()
+  @Column({
+    nullable: true
+  })
     bedrooms: number
 
-  @Column()
+  @Column({
+    nullable: true
+  })
     bathrooms: number
 
-  @Column()
+  @Column({
+    nullable: true
+  })
     floor: number
 
-  @Column()
+  @Column({
+    nullable: true
+  })
     juridical: string
 
-  @Column()
+  @Column({
+    nullable: true
+  })
     requirement: string
 
-  @Column()
+  @Column({
+    nullable: true
+  })
     type: string
 
 }

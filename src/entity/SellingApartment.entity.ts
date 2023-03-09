@@ -3,47 +3,65 @@ import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 @Entity()
 export class SellingApartment {
   @PrimaryGeneratedColumn("uuid")
-    id: string
+  id: string;
 
   @Column({
-    nullable: false
+    nullable: false,
   })
-    title: string
+  title: string;
 
   @Column({
-    nullable: false
+    nullable: false,
   })
-    description: string
-
-  @Column()
-    preview: string
-
-  @Column()
-    address: string
+  description: string;
 
   @Column({
-    nullable: false
+    nullable: true,
   })
-    price: string
-    
-  @Column()
-    area: string
+  preview: string;
 
-  @Column()
-    bedrooms: number
+  @Column({
+    nullable: true,
+  })
+  address: string;
 
-  @Column()
-    bathrooms: number
+  @Column({
+    nullable: false,
+  })
+  price: string;
 
-  @Column()
-    floor: number
+  @Column({
+    nullable: true,
+  })
+  area: string;
 
-  @Column()
-    juridical: string
+  @Column({
+    nullable: true,
+  })
+  bedrooms: number;
 
-  @Column()
-    requirement: string
+  @Column({
+    nullable: true,
+  })
+  bathrooms: number;
 
-  @Column()
-    type: string
+  @Column({
+    nullable: true,
+  })
+  floor: number;
+
+  @Column({
+    nullable: true,
+  })
+  juridical: string;
+
+  @Column({
+    nullable: true,
+  })
+  requirement: string;
+
+  @Column({
+    nullable: true,
+  })
+  type: string;
 }
