@@ -1,5 +1,7 @@
 import * as express from "express"
 import * as cors from "cors"
+import authRoutes from "./routes/AuthRoutes"
+import apartmentRouter from "./routes/ApartmentRoutes"
 import { connectToDatabase } from "./database/connect-database"
 
 
@@ -12,6 +14,9 @@ const main = async () => {
     app.use(express.urlencoded({
         extended: true
     }))
+
+    app.use("/api", authRoutes)
+    app.use("/api", apartmentRouter)
 
     const serverPort = process.env.SERVER_PORT || 5000;
     app.listen(serverPort, () => {
