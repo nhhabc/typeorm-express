@@ -7,9 +7,10 @@ const router = Router();
 
 router.post(
   "/admin/:query",
-  checkUser,
   upload.fields([{ name: "detail", maxCount: 1 }, { name: "files" }]),
   ApartmentController.createApartmentPost
 );
+
+router.get('/:query', ApartmentController.getAllApartmentPost)
 
 export default router;

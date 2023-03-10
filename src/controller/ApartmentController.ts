@@ -1,8 +1,11 @@
+import { ResponseMessage } from './../util/enum/respondMessageEnum';
 import { NextFunction, Response } from "express";
 import { getRepository } from "typeorm";
 import { RentedApartment } from "../entity/RentedApartment.entity";
 import { SellingApartment } from "../entity/SellingApartment.entity";
+import { HttpCodeEnum } from "../util/enum/httpCodeEnum";
 import { saveImageFiles } from "../util/saveImgFile";
+import { convertGeneralPost } from '../util/convertGeneralPost';
 
 export class ApartmentController {
   static createApartmentPost = async (
@@ -11,6 +14,8 @@ export class ApartmentController {
     next: NextFunction
   ) => {
     try {
+      console.log(req.user);
+
       const query = req.params.query;
       const fileBuf = req.files.detail[0].buffer;
       const listImg = req.files.files;
@@ -46,6 +51,36 @@ export class ApartmentController {
       res.json(post);
     } catch (err) {
       console.log(err);
+      res.status(HttpCodeEnum.BadRequest).json(ResponseMessage.DataCreateError)
     }
   };
+
+  static getAllApartmentPost = async (req: any, res: Response, next: NextFunction) => {
+    try {
+      const query = req.params.query;
+
+      const posts = []
+      let allPost: any
+
+      if (query === "sell") {
+        allPost = await getRepository(SellingApartment).find()
+        for (const post of allPost) {
+          const convertedPost = await convertGeneralPost(post);
+          posts.push(convertedPost)
+        }
+      } else {
+        allPost = await getRepository(RentedApartment).find()
+        for (const post of allPost) {
+          const convertedPost = await convertGeneralPost(post);
+          posts.push(convertedPost)
+        }
+      }
+
+      res.json(posts)
+
+    } catch (err) {
+      console.log(err);
+      res.status(HttpCodeEnum.BadRequest).json(ResponseMessage.DataFetchingError)
+    }
+  }
 }

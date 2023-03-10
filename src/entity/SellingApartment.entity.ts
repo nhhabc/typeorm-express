@@ -12,6 +12,7 @@ export class SellingApartment {
 
   @Column({
     nullable: false,
+    type: "longtext"
   })
   description: string;
 

@@ -4,4 +4,6 @@ export enum ResponseMessage {
   UserNotFound = "Tên đăng nhập không chính xác",
   PasswordNotMatch = "Mật khẩu xác nhận không khớp",
   ChangedPassword = "Mật khẩu của bạn đã được thay đổi",
+  DataFetchingError = "Không thể cập nhật dữ liệu",
+  DataCreateError = "Lỗi khởi tạo dữ liệu",
 }
